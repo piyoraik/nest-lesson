@@ -1,0 +1,12 @@
+
+### FindAll
+GET http://localhost:3000/users
+
+### CreatePost
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "username": "fuga",
+  "password": "asdf"
+}
