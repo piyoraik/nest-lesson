@@ -1,17 +1,23 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { ConfigService } from '@nestjs/config';
+import { hash } from 'bcryptjs';
 import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/createUser.dto';
 import { User } from './interface/user.interface';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+  constructor(
+    @InjectModel('User') private readonly userModel: Model<User>,
+    private readonly config: ConfigService,
+  ) {}
 
   async create(user: CreateUserDto) {
+    const salt = +this.config.get('SALT');
     const createdUser = new this.userModel({
       username: user.username,
-      password: user.password,
+      password: await hash(user.password, salt),
       description: user.description,
     });
     return await createdUser.save();
