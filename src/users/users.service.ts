@@ -30,7 +30,9 @@ export class UsersService {
   }
 
   async Update(inputUser: CreateUserDto) {
-    const user = await this.userModel.findOne({ username: inputUser.username });
+    const user = await this.userModel
+      .findOne({ username: inputUser.username })
+      .exec();
     if (!user) {
       throw new NotFoundException('Cloud Not find User');
     }
@@ -40,7 +42,7 @@ export class UsersService {
   }
 
   async Delete(username: string) {
-    const user = await this.userModel.findOne({ username: username });
+    const user = await this.userModel.findOne({ username: username }).exec();
     if (!user) {
       throw new NotFoundException('Cloud Not find User');
     }

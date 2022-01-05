@@ -12,6 +12,5 @@ export const userSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
   },
 });
