@@ -2,6 +2,9 @@
 ### FindAll
 GET http://localhost:3000/users
 
+### FindOne
+GET http://localhost:3000/users/fuga
+
 ### CreatePost
 POST http://localhost:3000/users
 Content-Type: application/json
