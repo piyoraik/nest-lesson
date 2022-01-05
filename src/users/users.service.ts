@@ -12,6 +12,7 @@ export class UsersService {
     const createdUser = new this.userModel({
       username: user.username,
       password: user.password,
+      description: user.description,
     });
     return await createdUser.save();
   }
@@ -26,5 +27,23 @@ export class UsersService {
       throw new NotFoundException('Cloud not find User');
     }
     return user;
+  }
+
+  async Update(inputUser: CreateUserDto) {
+    const user = await this.userModel.findOne({ username: inputUser.username });
+    if (!user) {
+      throw new NotFoundException('Cloud Not find User');
+    }
+    user.description = inputUser.description;
+    user.password = inputUser.password;
+    return await user.save();
+  }
+
+  async Delete(username: string) {
+    const user = await this.userModel.findOne({ username: username });
+    if (!user) {
+      throw new NotFoundException('Cloud Not find User');
+    }
+    return await user.deleteOne();
   }
 }

@@ -11,5 +11,19 @@ Content-Type: application/json
 
 {
   "username": "fuga",
-  "password": "asdfasddf"
+  "password": "asdfasddf",
+  "description": "hogehogehoge"
 }
+
+### UpdatePost
+PUT  http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "username": "fuga",
+  "password": "12341234",
+  "description": "fugafugafuga"
+}
+
+### DeletePost
+DELETE http://localhost:3000/users/fuga
