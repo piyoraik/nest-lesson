@@ -4,6 +4,8 @@ GET http://localhost:3000/users
 
 ### FindOne
 GET http://localhost:3000/users/fuga
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZ1Z2EiLCJpYXQiOjE2NDEzNjY2ODcsImV4cCI6MTY0MTM3MDI4N30.TuvoApgc4pAd18KF9B27ciWbEL85NAe7RtFzQuU_mhI
+
 
 ### CreatePost
 POST http://localhost:3000/users

@@ -6,8 +6,11 @@ import {
   Param,
   Post,
   Put,
+  Request,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UsersService } from './users.service';
 
@@ -21,8 +24,10 @@ export class UsersController {
   }
 
   @Get(':username')
-  findOne(@Param('username') username: string) {
-    return this.usersService.findOne(username);
+  @UseGuards(AuthGuard('jwt'))
+  findOne(@Param('username') username: string, @Request() req: any) {
+    return req.user;
+    // return this.usersService.findOne(username);
   }
 
   @Post()
